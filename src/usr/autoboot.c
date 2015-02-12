@@ -74,6 +74,7 @@ static int ( * is_autoboot_device ) ( struct net_device *netdev );
 
 #define NORMAL	"\033[0m"
 #define BOLD	"\033[1m"
+#define BLUE	"\033[34m"
 #define CYAN	"\033[36m"
 
 /** The "scriptlet" setting */
@@ -600,9 +601,13 @@ int ipxe ( struct net_device *netdev ) {
 	 * to do so.
 	 *
 	 */
-	printf ( NORMAL "\n\n" PRODUCT_NAME "\n" BOLD PRODUCT_SHORT_NAME " %s"
+	printf ( NORMAL "\n\n" PRODUCT_NAME "\n" BOLD PRODUCT_SHORT_NAME
 		 NORMAL " -- " PRODUCT_TAG_LINE " -- "
-		 CYAN PRODUCT_URI NORMAL "\nFeatures:", product_version );
+		 CYAN PRODUCT_URI NORMAL "\n"
+		 BOLD "Arch" BLUE "Linux" NORMAL " -- make it simple and lightweight -- "
+		 BOLD BLUE "https://archlinux.org" NORMAL "\n"
+		 "Version %s compiled on " __DATE__ ", " __TIME__ "\n"
+		 "Features:", product_version );
 	for_each_table_entry ( feature, FEATURES )
 		printf ( " %s", feature->name );
 	printf ( "\n" );
